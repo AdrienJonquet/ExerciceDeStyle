@@ -1,0 +1,4 @@
+_client/exercice_de_style.cmo :
+_client/exercice_de_style.cmx :
+_client/exercice_de_style.cmo : _server/exercice_de_style.type_mli
+_client/exercice_de_style.cmx : _server/exercice_de_style.type_mli

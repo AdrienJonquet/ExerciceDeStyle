@@ -1,0 +1,25 @@
+{shared{
+  open Eliom_lib
+  open Eliom_content
+}}
+
+module Exercice_de_style_app =
+  Eliom_registration.App (
+    struct
+      let application_name = "exercice_de_style"
+    end)
+
+let main_service =
+  Eliom_service.service ~path:[] ~get_params:Eliom_parameter.unit ()
+
+let () =
+  Exercice_de_style_app.register
+    ~service:main_service
+    (fun () () ->
+      Lwt.return
+        (Eliom_tools.F.html
+           ~title:"exercice_de_style"
+           ~css:[["css";"exercice_de_style.css"]]
+           Html5.F.(body [
+             h2 [pcdata "Welcome from Eliom's destillery!"];
+           ])))
