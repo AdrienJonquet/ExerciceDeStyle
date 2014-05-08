@@ -1,3 +1,163 @@
 * {
-    font-family: sans-serif;
+    font-family: 'Century Gothic';
+    color: #333;
+    background-color: #EEEEEE;
+    //margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-size: .85em;
+    position:absolute; top:0; bottom:0; right:0; left:0;
+    margin-left:auto;
+    margin-right:auto;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+    padding: 0;
+}
+
+a {
+    color: #333;
+    outline: none;
+    text-decoration: none;
+}
+
+a:link, 
+a:visited,
+a:active,
+a:hover {
+    color: #333;
+}
+
+a:hover {
+    color: #c7d1d6;
+}
+
+header, 
+footer, 
+hgroup,
+nav, 
+section {
+    display: block;
+}
+
+/**************/
+/* Containers */
+/**************/
+
+.header-container {
+    border-bottom: 1px solid #6f6f6f;
+    height: 85px;
+    margin-bottom: 10px;
+}
+
+.header-left-container {
+    float: left;
+    min-width: 500px;
+}
+
+.header-right-container {
+    position: relative;
+    top: 65px;
+    right: 1%;
+}
+
+.logo-container {
+    float: left;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+/********/
+/* menu */
+/********/
+
+.skel-menu {
+    font-size: 0.95em;
+    margin: 0 0 5px;
+    padding: 0;
+    text-align: right;
+}
+
+.skel-menu li {
+    display: inline;
+    list-style: none;
+    padding-left: 15px;
+    font-family: 'Century Gothic'
+}
+
+.skel-menu li a {
+    background: none;
+    color: #999;
+    text-decoration: none;
+}
+
+.skel-menu li a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+/**********/
+/* Footer */
+/**********/
+
+.skel-footer .float-left,
+.skel-footer .float-right {
+    float: none;
+}
+
+.skel-footer {
+    text-align: center;
+    height: auto;
+    padding: 10px 0;
+}
+
+.skel-footer p {
+    margin: 0;
+}
+
+.skel-footer-text {
+    color:  #999;
+    font-family: 'Century Gothic';
+    margin: 0;
+    font-size: 1.4em;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+/*********/
+/* fonts */
+/*********/
+
+.big-century {
+    color: #c8c8c8;
+    font-family: 'Century Gothic';
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.average-century {
+    color: #333;
+    font-family: 'Century Gothic';
+    font-size: 1.0em;
+    margin: 0;
+}
+
+
