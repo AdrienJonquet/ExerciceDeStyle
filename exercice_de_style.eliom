@@ -78,6 +78,11 @@ let header_container = div ~a:[a_class ["header-container"]] [
     header_container_right;
   ]
 
+let body_container body_content = 
+  div ~a:[a_id "body-container"] [
+    body_content
+  ]
+
 let skeletton body_content =
   Lwt.return 
     (Eliom_tools.F.html
@@ -85,9 +90,7 @@ let skeletton body_content =
        ~css:[["css";"exercice_de_style.css"]]
        (body [
            header [header_container];
-           div ~a:[a_id "body-container"] [
-             body_content
-           ];
+           body_container body_content;
            footer
          ]))
 
@@ -106,10 +109,33 @@ let home_page =
 (* Client *)
 (**********)
 
+
+
 {client{
+
    let resize_body () =
-     ()
-}}
+     let innerHeight = Dom_html.window##innerHeight in
+     if Js.Optdef.test innerHeight then
+       let window_height =
+         (Js.Optdef.get innerHeight (fun () -> raise Not_found)) - (85+25+34+10)
+       in
+       let body_container_dom =
+         Js.Opt.get Dom_html.document##getElementById(Js.string "body-container") 
+           (fun _ -> raise Not_found) 
+       in
+       (*   Eliom_content.Html5.To_dom.of_div (%body_container (div[])) in *)
+       (body_container_dom##style)##height <- Js.string ((string_of_int window_height) ^ "px");
+     else ();
+     Js._true
+
+    let _ =
+      Dom_html.window##onload <-
+        Dom.handler (fun _ -> resize_body()); Js._true;
+      Dom_html.window##onresize <-
+        Dom.handler (fun _ -> resize_body()); Js._true;
+      
+                                                           
+ }}
 
 (*************)
 
