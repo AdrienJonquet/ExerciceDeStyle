@@ -202,8 +202,29 @@ let _ =
 (******************)
 
 let philosophy_page = 
-  div ~a:[a_style "text-align: center; height: 100%"] [
-    pcdata "Phylo"
+  div ~a:[a_style "max-width: 1000px; margin-left: auto; margin-right: auto; max-height: 100%; overflow: auto"] [
+    aside ~a:[a_style "float: left; width: 520px;"] [
+      img ~alt:("Portrait")
+        ~a:[a_width 500]
+        ~src:(make_uri ~service:(Eliom_service.static_dir ()) ["img/portrait.JPG"]) ()
+    ];
+    div ~a:[a_class ["presentation"]] [
+      h3 [pcdata "ART CONSEIL"];
+      p [pcdata "Pour décorer votre intérieur avec originalité ou envisager l'aventure d'une collection, je vous propose mon assistance dans la découverte du monde de l'art et des conseils éclairés pour l'acquisition d’œuvres d'art de qualité  L'offre étant aujourd’hui particulièrement vaste et complexe, je mets à votre disposition mon expertise pour vous permettre d'affiner votre regard et de trouver les œuvres qui vous correspondent.  En vous accompagnant en grandes foires internationales, galeries ou salles de vente, je serai heureuse de vous guider dans les différentes tendances et les multiples mouvements qui animent l'art  moderne et contemporain. 
+Acquérir des œuvres d'art participe également d'une stratégie de valorisation patrimoniale. C'est la raison pour laquelle le choix d’œuvres de qualité disposant d’un potentiel d’appréciation est essentiel. Je vous offre mes compétences et ma connaissance du marché d'art international afin de sécuriser et d'optimiser votre patrimoine en alliant le plaisir avec la qualité de placement."]
+    ];
+    br ();
+    p [pcdata "Services proposés :"];
+    ul ~a:[a_style "list-style-type:circle"] [
+      li [pcdata "§ analyse du marché de l'art et de ses meilleures opportunités"];
+      li [pcdata "§ représentation lors des ventes aux enchères"];
+      li [pcdata "§ vérification de l'authenticité et de la valeur d'une oeuvre ou d'un objet"];
+      li [pcdata "§ gestion logistique - transport"];
+      li [pcdata "§ conseil en gestion des collections - valorisation documentaire"];
+    ];
+    h3 [pcdata "PARCOURS"];
+    p [pcdata "Historienne de l'art de formation et diplômée de l'Ecole du Louvre, j'ai travaillé pendant plus de vingt ans à la Réunion des Musées Nationaux, un établissement public qui joue un rôle phare dans la valorisation des collections des musées français et qui organise de grandes expositions d’art de niveau international.
+Spécialiste en art moderne j'ai une parfaite connaissance du marché de l'art et de ses acteurs ainsi que des collections publiques ou privées du monde entier."]
   ]
 
 let _ =
