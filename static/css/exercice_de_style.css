@@ -84,6 +84,25 @@ section {
     float: right;
 }
 
+/**************/
+/* Philosophy */
+/**************/
+
+div.presentation {
+    /*position: relative;
+    top: 20%;
+    float: right;
+    width: 300px;
+    margin-right: 160px;*/
+}
+
+div.presentation p {
+    font-size: 1.0em;
+    //font-style: italic;
+    font-family: 'Century Gothic';
+}
+
+
 /********/
 /* menu */
 /********/
