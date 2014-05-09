@@ -1,7 +1,7 @@
 {shared{
   open Eliom_lib
   open Eliom_content
-  open Eliom_content.Html5.F
+  open Html5.D
 }}
 
 module Exercice_de_style_app =
@@ -10,12 +10,63 @@ module Exercice_de_style_app =
       let application_name = "exercice_de_style"
     end)
 
-(***********************)
-(* Services (Web Pages) *)
-(***********************)
 
-let main_service =
-  Eliom_service.service ~path:[] ~get_params:Eliom_parameter.unit ()
+(************)
+(* Services *)
+(************)
+
+let home_service =
+  Eliom_service.service 
+    ~path:[] 
+    ~get_params:Eliom_parameter.unit 
+    ()
+
+let gallery_service =
+  Eliom_service.service 
+    ~path:["gallery"] 
+    ~get_params:Eliom_parameter.unit 
+    ()
+
+let deco_service =
+  Eliom_service.service 
+    ~path:["deco"] 
+    ~get_params:Eliom_parameter.unit 
+    ()
+
+let philosophy_service =
+  Eliom_service.service 
+    ~path:["philosophy"] 
+    ~get_params:Eliom_parameter.unit 
+    ()
+
+(**********)
+(* Client *)
+(**********)
+
+{client{
+
+   let resize_body () =
+     let innerHeight = Dom_html.window##innerHeight in
+     if Js.Optdef.test innerHeight then
+       let window_height =
+         (Js.Optdef.get innerHeight (fun () -> raise Not_found)) - (85+25+34+10)
+       in
+       let body_container_dom =
+         Js.Opt.get Dom_html.document##getElementById(Js.string "body-container") 
+           (fun _ -> raise Not_found) 
+       in
+       (*   Eliom_content.Html5.To_dom.of_div (%body_container (div[])) in *)
+       (body_container_dom##style)##height <- Js.string ((string_of_int window_height) ^ "px");
+     else ();
+     Js._true
+
+    (* let _ = *)
+    (*   Dom_html.window##onload <- *)
+    (*     Dom.handler (fun _ -> resize_body()); *)
+    (*   Dom_html.window##onresize <- *)
+    (*     Dom.handler (fun _ -> resize_body());  *)
+    (*   Js._true;     *)                                               
+ }}
 
 (***********************)
 (* Skeletton Web Pages *)
@@ -23,7 +74,7 @@ let main_service =
 
 let title_container = div [
     pre ~a:[a_class ["big-century"]] [
-      a main_service
+      a home_service
         [pcdata "V L A D A N A  J O N Q U E T"]
         ()
     ];
@@ -51,13 +102,13 @@ let header_container_right =
   div ~a:[a_class ["header-right-container"]] [
     nav [
       ul ~a:[a_class ["skel-menu"]] [
-        li [a main_service
+        li [a gallery_service
               [pcdata "Galerie"]
               ()];
-        li [a main_service
+        li [a deco_service
               [pcdata "Décoration Intérieure"]
               ()];
-        li [a main_service
+        li [a philosophy_service
               [pcdata "Art Conseil"]
               ()];
       ]
@@ -84,7 +135,15 @@ let body_container body_content =
   ]
 
 let skeletton body_content =
-  Lwt.return 
+  ignore {unit{
+      Dom_html.window##onload <-
+        Dom.handler (fun _ -> resize_body());
+      Dom_html.window##onresize <-
+        Dom.handler (fun _ -> resize_body());
+      let _ = resize_body() in ()
+      
+    }};
+  Lwt.return
     (Eliom_tools.F.html
        ~title:"Vladana Jonquet"
        ~css:[["css";"exercice_de_style.css"]]
@@ -93,7 +152,7 @@ let skeletton body_content =
            body_container body_content;
            footer
          ]))
-
+    
 (*************)
 (* Home Page *)
 (*************)
@@ -105,42 +164,50 @@ let home_page =
       ~src:(make_uri ~service:(Eliom_service.static_dir ()) ["img/home/B23K0049.JPG"]) ()
   ]
 
-(**********)
-(* Client *)
-(**********)
+let _ =
+  Exercice_de_style_app.register
+    ~service:home_service
+    (fun () () -> skeletton home_page)
 
+(****************)
+(* Gallery Page *)
+(****************)
 
+let gallery_page = 
+  div ~a:[a_style "text-align: center; height: 100%"] [
+    pcdata "Gallery"
+  ]
 
-{client{
-
-   let resize_body () =
-     let innerHeight = Dom_html.window##innerHeight in
-     if Js.Optdef.test innerHeight then
-       let window_height =
-         (Js.Optdef.get innerHeight (fun () -> raise Not_found)) - (85+25+34+10)
-       in
-       let body_container_dom =
-         Js.Opt.get Dom_html.document##getElementById(Js.string "body-container") 
-           (fun _ -> raise Not_found) 
-       in
-       (*   Eliom_content.Html5.To_dom.of_div (%body_container (div[])) in *)
-       (body_container_dom##style)##height <- Js.string ((string_of_int window_height) ^ "px");
-     else ();
-     Js._true
-
-    let _ =
-      Dom_html.window##onload <-
-        Dom.handler (fun _ -> resize_body()); Js._true;
-      Dom_html.window##onresize <-
-        Dom.handler (fun _ -> resize_body()); Js._true;
-      
-                                                           
- }}
+let _ =
+  Exercice_de_style_app.register
+    ~service:gallery_service
+    (fun () () -> skeletton gallery_page)
 
 (*************)
+(* Deco Page *)
+(*************)
 
-let () =
+let deco_page = 
+  div ~a:[a_style "text-align: center; height: 100%"] [
+    pcdata "Deco"
+  ]
+
+let _ =
   Exercice_de_style_app.register
-    ~service:main_service
-    (fun () () -> skeletton home_page)
+    ~service:deco_service
+    (fun () () -> skeletton deco_page)
+
+(******************)
+(* Philosphy Page *)
+(******************)
+
+let philosophy_page = 
+  div ~a:[a_style "text-align: center; height: 100%"] [
+    pcdata "Phylo"
+  ]
+
+let _ =
+  Exercice_de_style_app.register
+    ~service:philosophy_service
+    (fun () () -> skeletton philosophy_page)
 
