@@ -179,4 +179,65 @@ div.presentation p {
     margin: 0;
 }
 
+/***********/
+/* Gallery */
+/***********/
 
+#viewer-container {
+    height: 100%;
+    position: relative;
+    /*right: 1%;*/
+}
+
+#thumbs { 
+    overflow:auto; 
+    list-style:none; 
+    padding:0; 
+    float: left;
+    height: 100%;
+    width: 130px; 
+    text-align: center;
+    position: relative;
+    top: -15px;
+}
+#thumbs a { 
+    display:block; 
+    padding:5px; 
+    outline:none; 
+}
+#thumbs a:hover, #thumbs a:focus {
+     background:#333; 
+}
+#thumbs a.active { 
+    background:#999; 
+}
+#thumbs img {
+    vertical-align: middle;
+}
+
+#viewer { 
+/*display:table-cell;
+    vertical-align:middle; 
+    text-align: center;
+    max-width: 100%; 
+    max-height: 100%;*/ 
+    height: 100%;
+    float: left;
+    margin-left: 20px;
+}
+#viewer img { 
+    max-width: 100%; 
+    max-height: 100%; 
+
+}
+#viewer img[src*="loader"] { 
+    position:absolute; 
+    left:50%; 
+    top:50%; 
+    margin:-15px 0 0 -15px; 
+}
+
+#clear {
+	clear : both;
+	visibility : hidden;
+}

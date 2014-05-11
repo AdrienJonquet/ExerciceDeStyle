@@ -1,7 +1,7 @@
 {shared{
   open Eliom_lib
   open Eliom_content
-  open Html5.D
+  open Html5.F
 }}
 
 module Exercice_de_style_app =
@@ -134,7 +134,7 @@ let body_container body_content =
     body_content
   ]
 
-let skeletton body_content =
+let skeletton body_content title =
   ignore {unit{
       Dom_html.window##onload <-
         Dom.handler (fun _ -> resize_body());
@@ -145,8 +145,9 @@ let skeletton body_content =
     }};
   Lwt.return
     (Eliom_tools.F.html
-       ~title:"Vladana Jonquet"
+       ~title:title
        ~css:[["css";"exercice_de_style.css"]]
+       ~js:[["script";"jquery-1.11.1.min.js"]; ["script";"gallery.js"]]
        (body [
            header [header_container];
            body_container body_content;
@@ -167,21 +168,99 @@ let home_page =
 let _ =
   Exercice_de_style_app.register
     ~service:home_service
-    (fun () () -> skeletton home_page)
+    (fun () () -> skeletton home_page "Vladana Jonquet")
 
 (****************)
 (* Gallery Page *)
 (****************)
 
 let gallery_page = 
-  div ~a:[a_style "text-align: center; height: 100%"] [
-    pcdata "Gallery"
+  div ~a:[a_id "viewer-container"] [
+    ul ~a:[a_id "thumbs"] [
+      li [
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/01_IMG_7682.JPG"]) ()
+        ] ["img/gallery/01_IMG_7682.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/02_IMG_9192_v2.JPG"]) ()
+        ] ["img/gallery/02_IMG_9192_v2.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/03_IMG_7935.JPG"]) ()
+        ] ["img/gallery/03_IMG_7935.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/04_IMG_8328.JPG"]) ()
+        ] ["img/gallery/04_IMG_8328.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/05_B23K0051-2.JPG"]) ()
+        ] ["img/gallery/05_B23K0051-2.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/06_IMG_7595.JPG"]) ()
+        ] ["img/gallery/06_IMG_7595.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/07_IMG_7737.JPG"]) ()
+        ] ["img/gallery/07_IMG_7737.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/08_IMG_7760.JPG"]) ()
+        ] ["img/gallery/08_IMG_7760.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/09_IMG_7852.JPG"]) ()
+        ] ["img/gallery/09_IMG_7852.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/10_IMG_7889.JPG"]) ()
+        ] ["img/gallery/10_IMG_7889.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/11_IMG_8331.JPG"]) ()
+        ] ["img/gallery/11_IMG_8331.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/12_IMG_8505 1.JPG"]) ()
+        ] ["img/gallery/12_IMG_8505 1.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/13_IMG_8545.JPG"]) ()
+        ] ["img/gallery/13_IMG_8545.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/14_IMG_9095.JPG"]) ()
+        ] ["img/gallery/14_IMG_9095.JPG"];
+        a (Eliom_service.static_dir ()) [
+          img ~alt:("1") 
+            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                    ["img/gallery/thumbs/15_IMG_9126.JPG"]) ()
+        ] ["img/gallery/15_IMG_9126.JPG"];
+      ]
+    ]
   ]
 
 let _ =
   Exercice_de_style_app.register
     ~service:gallery_service
-    (fun () () -> skeletton gallery_page)
+    (fun () () -> skeletton gallery_page "Actuellement dans la galerie")
 
 (*************)
 (* Deco Page *)
@@ -195,7 +274,7 @@ let deco_page =
 let _ =
   Exercice_de_style_app.register
     ~service:deco_service
-    (fun () () -> skeletton deco_page)
+    (fun () () -> skeletton deco_page "Décoration Intérieure")
 
 (******************)
 (* Philosphy Page *)
@@ -230,5 +309,5 @@ Spécialiste en art moderne j'ai une parfaite connaissance du marché de l'art e
 let _ =
   Exercice_de_style_app.register
     ~service:philosophy_service
-    (fun () () -> skeletton philosophy_page)
+    (fun () () -> skeletton philosophy_page "Philosophie")
 
