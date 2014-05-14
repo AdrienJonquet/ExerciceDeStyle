@@ -1,3 +1,4 @@
+
 jQuery(function($){
 
   var settings = {
