@@ -137,7 +137,7 @@ let header_container = div ~a:[a_class ["header-container"]] [
 let body_container body_content = 
   div ~a:[a_id "body-container"] body_content
 
-let skeletton body_content title scripts =
+let skeletton body_content title =
   ignore {unit{
       Dom_html.window##onresize <-
         Dom.handler (fun _ -> resize_body(); Js._true;);
@@ -148,7 +148,7 @@ let skeletton body_content title scripts =
     (Eliom_tools.F.html
        ~title:title
        ~css:[["css";"exercice_de_style.css"]]
-       ~js:scripts
+       ~js:[["script";"jquery-1.11.1.min.js"];["script";"gallery.js"]]
        (body [
            header [header_container];
            body_container body_content;
@@ -169,14 +169,13 @@ let home_page =
 let _ =
   Exercice_de_style_app.register
     ~service:home_service
-    (fun () () -> skeletton [home_page] "Vladana Jonquet" [])
+    (fun () () -> skeletton [home_page] "Vladana Jonquet")
 
 (****************)
 (* Gallery Page *)
 (****************)
 
 let gallery_page =
-
   div ~a:[a_id "viewer-container"] [
     ul ~a:[a_id "thumbs"] [
       li [
@@ -262,8 +261,7 @@ let gallery_page =
 let _ =
   Exercice_de_style_app.register
     ~service:gallery_service
-    (fun () () -> skeletton [gallery_page] "Actuellement dans la galerie"
-        [["script";"jquery-1.11.1.min.js"];["script";"gallery.js"]])
+    (fun () () -> skeletton [gallery_page] "Actuellement dans la galerie")
 
 (*************)
 (* Deco Page *)
@@ -341,8 +339,7 @@ let deco_page =
 let _ =
   Exercice_de_style_app.register
     ~service:deco_service
-    (fun () () -> skeletton deco_page "Décoration Intérieure"
-        [["script";"jquery-1.11.1.min.js"];["script";"gallery.js"]])
+    (fun () () -> skeletton deco_page "Décoration Intérieure")
 
 (******************)
 (* Philosphy Page *)
@@ -377,5 +374,5 @@ Spécialiste en art moderne j'ai une parfaite connaissance du marché de l'art e
 let _ =
   Exercice_de_style_app.register
     ~service:philosophy_service
-    (fun () () -> skeletton [philosophy_page] "Philosophie" [])
+    (fun () () -> skeletton [philosophy_page] "Philosophie")
 
