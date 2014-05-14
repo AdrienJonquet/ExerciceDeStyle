@@ -1,14 +1,14 @@
 {shared{
-  open Eliom_lib
-  open Eliom_content
-  open Html5.D
+open Eliom_lib
+open Eliom_content
+open Html5.D
 }}
 
 module Exercice_de_style_app =
   Eliom_registration.App (
-    struct
-      let application_name = "exercice_de_style"
-    end)
+  struct
+    let application_name = "exercice_de_style"
+  end)
 
 
 (************)
@@ -39,39 +39,39 @@ let philosophy_service =
     ~get_params:Eliom_parameter.unit 
     ()
 
-(**********)
-(* Client *)
-(**********)
+    (**********)
+    (* Client *)
+    (**********)
 
-{client{
-   
-   let resize_body () =
-     let innerHeight = Dom_html.window##innerHeight in
-     if Js.Optdef.test innerHeight then
-       let window_height =
-         (Js.Optdef.get innerHeight (fun () -> raise Not_found)) - (85+25+34+10)
-       in
-       let body_container_dom =
-         Js.Opt.get Dom_html.document##getElementById(Js.string "body-container") 
-           (fun _ -> raise Not_found) 
-       in
-       (*   Eliom_content.Html5.To_dom.of_div (%body_container (div[])) in *)
-       (body_container_dom##style)##height <- Js.string ((string_of_int window_height) ^ "px");
-     else 
-       ();
-  
-    (* let _ = *)
-    (*   Dom_html.window##onload <- *)
-    (*     Dom.handler (fun _ -> resize_body()); *)
-    (*   Dom_html.window##onresize <- *)
-    (*     Dom.handler (fun _ -> resize_body());  *)
-    (*   Js._true;     *)                                               
- }}
+    {client{
 
-{client{
-    let generate_gallery () = 
-      Js.Unsafe.fun_call (Js.Unsafe.variable "generate_gallery") [||]
-  }}
+        let resize_body () =
+          let innerHeight = Dom_html.window##innerHeight in
+          if Js.Optdef.test innerHeight then
+            let window_height =
+              (Js.Optdef.get innerHeight (fun () -> raise Not_found)) - (85+25+34+10)
+            in
+            let body_container_dom =
+              Js.Opt.get Dom_html.document##getElementById(Js.string "body-container") 
+                (fun _ -> raise Not_found) 
+            in
+            (*   Eliom_content.Html5.To_dom.of_div (%body_container (div[])) in *)
+            (body_container_dom##style)##height <- Js.string ((string_of_int window_height) ^ "px");
+          else 
+            ();
+
+          (* let _ = *)
+          (*   Dom_html.window##onload <- *)
+          (*     Dom.handler (fun _ -> resize_body()); *)
+          (*   Dom_html.window##onresize <- *)
+          (*     Dom.handler (fun _ -> resize_body());  *)
+          (*   Js._true;     *)                                               
+      }}
+
+    {client{
+        let generate_gallery () = 
+          Js.Unsafe.fun_call (Js.Unsafe.variable "generate_gallery") [||]
+      }}
 
 (***********************)
 (* Skeletton Web Pages *)
@@ -89,7 +89,7 @@ let title_container = div [
     div ~a:[a_class ["average-century"]] [
       pcdata "Galerie – Art et arts décoratifs du XXe siècle"
     ] 
-]
+  ]
 
 let logo_container = div ~a:[a_class ["logo-container"]] [
     img ~alt:("LOGO")
@@ -102,7 +102,7 @@ let header_container_left =
     logo_container;
     title_container
   ]
-    
+
 let header_container_right =
   div ~a:[a_class ["header-right-container"]] [
     nav [
@@ -136,7 +136,7 @@ let header_container = div ~a:[a_class ["header-container"]] [
 
 let body_container body_content = 
   div ~a:[a_id "body-container"] body_content
-    
+
 let skeletton body_content title scripts =
   ignore {unit{
       Dom_html.window##onresize <-
@@ -154,7 +154,7 @@ let skeletton body_content title scripts =
            body_container body_content;
            footer
          ]))
-    
+
 (*************)
 (* Home Page *)
 (*************)
@@ -320,8 +320,8 @@ let deco_page =
           ] ["img/decoration/IMG_7958.JPG"];
           a (Eliom_service.static_dir ()) [
             img ~alt:("1") 
-            ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/decoration/thumbs/IMG_8303.JPG"]) ()
+              ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
+                      ["img/decoration/thumbs/IMG_8303.JPG"]) ()
           ] ["img/decoration/IMG_8303.JPG"];
           a (Eliom_service.static_dir ()) [
             img ~alt:("1") 
@@ -337,7 +337,7 @@ let deco_page =
       ]
     ]
   ]
-    
+
 let _ =
   Exercice_de_style_app.register
     ~service:deco_service
