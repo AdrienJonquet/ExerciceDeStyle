@@ -44,7 +44,7 @@ let philosophy_service =
 (**********)
 
 {client{
-
+   
    let resize_body () =
      let innerHeight = Dom_html.window##innerHeight in
      if Js.Optdef.test innerHeight then
@@ -57,8 +57,8 @@ let philosophy_service =
        in
        (*   Eliom_content.Html5.To_dom.of_div (%body_container (div[])) in *)
        (body_container_dom##style)##height <- Js.string ((string_of_int window_height) ^ "px");
-     else ();
-     Js._true
+     else 
+       ();
   
     (* let _ = *)
     (*   Dom_html.window##onload <- *)
@@ -69,8 +69,9 @@ let philosophy_service =
  }}
 
 {client{
-
-}}
+    let generate_gallery () = 
+      Js.Unsafe.fun_call (Js.Unsafe.variable "generate_gallery") [||]
+  }}
 
 (***********************)
 (* Skeletton Web Pages *)
@@ -138,11 +139,10 @@ let body_container body_content =
     
 let skeletton body_content title scripts =
   ignore {unit{
-      Dom_html.window##onload <-
-        Dom.handler (fun _ -> resize_body());
       Dom_html.window##onresize <-
-        Dom.handler (fun _ -> resize_body());
-      let _ = resize_body() in ()
+        Dom.handler (fun _ -> resize_body(); Js._true;);
+      resize_body();
+      generate_gallery();
     }};
   Lwt.return
     (Eliom_tools.F.html
@@ -176,6 +176,7 @@ let _ =
 (****************)
 
 let gallery_page =
+
   div ~a:[a_id "viewer-container"] [
     ul ~a:[a_id "thumbs"] [
       li [
