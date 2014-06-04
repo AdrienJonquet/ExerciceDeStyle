@@ -16,25 +16,25 @@ module Exercice_de_style_app =
 (************)
 
 let home_service =
-  Eliom_service.service 
+  Eliom_service.App.service 
     ~path:[] 
     ~get_params:Eliom_parameter.unit 
     ()
 
 let gallery_service =
-  Eliom_service.service 
+  Eliom_service.App.service 
     ~path:["gallery"] 
     ~get_params:Eliom_parameter.unit 
     ()
 
 let deco_service =
-  Eliom_service.service 
+  Eliom_service.App.service 
     ~path:["decoration"] 
     ~get_params:Eliom_parameter.unit 
     ()
 
 let philosophy_service =
-  Eliom_service.service 
+  Eliom_service.App.service 
     ~path:["philosophy"] 
     ~get_params:Eliom_parameter.unit 
     ()
@@ -69,8 +69,30 @@ let philosophy_service =
       }}
 
     {client{
-        let generate_gallery () = 
+        let generate_gallery_js () = 
           Js.Unsafe.fun_call (Js.Unsafe.variable "generate_gallery") [||]
+      }}
+
+    {client{
+        let generate_gallery () =
+          let unopt x = Js.Opt.get x (fun _ -> raise Not_found) in
+          let retrieve id = unopt Dom_html.document##getElementById(Js.string id) in
+          let thumbListId = "thumbs" in
+          let imgViewerId = "viewer" in
+          let activeClass = "active" in
+          let activeTitle = "Photo en cours de visualisation" in
+          let loaderTitle = "Chargement en cours" in
+          let loaderImage = "static/img/loader.img" in
+          let thumbLinks = (retrieve thumbListId)##getElementsByTagName(Js.string "a") in
+          let firstThumbLink = 
+            let elt = unopt thumbLinks##item(0) in
+            unopt (Dom_html.CoerceTo.a (Dom_html.element elt))
+          in
+          let imgViewerDiv = Dom_html.document##createElement(Js.string "div") in
+          imgViewerDiv##id <- Js.string imgViewerId;
+          let imgViewer = Dom_html.createImg Dom_html.document in
+          imgViewer##alt <- Js.string "";
+          imgViewer##src <- firstThumbLink##href;
       }}
 
 (***********************)
@@ -142,7 +164,7 @@ let skeletton body_content title =
       Dom_html.window##onresize <-
         Dom.handler (fun _ -> resize_body(); Js._true;);
       resize_body();
-      generate_gallery();
+      generate_gallery_js();
     }};
   Lwt.return
     (Eliom_tools.F.html
