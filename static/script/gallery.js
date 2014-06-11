@@ -6,7 +6,7 @@ function generate_gallery () {
 	activeClass: "active",
 	activeTitle: "Photo en cours de visualisation",
     loaderTitle: "Chargement en cours",
-	loaderImage: "static/img/loader.gif"
+	loaderImage: "img/loader.gif"
     };
     
     var thumbLinks = $("#"+settings.thumbListId).find("a"),
