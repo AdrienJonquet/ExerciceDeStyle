@@ -84,15 +84,21 @@ let philosophy_service =
           let loaderTitle = "Chargement en cours" in
           let loaderImage = "static/img/loader.img" in
           let thumbLinks = (retrieve thumbListId)##getElementsByTagName(Js.string "a") in
+          (* let highlight elt =  *)
+          (*   thumbLinks##removeClass (); *)
+          (* in *)
           let firstThumbLink = 
             let elt = unopt thumbLinks##item(0) in
             unopt (Dom_html.CoerceTo.a (Dom_html.element elt))
           in
-          let imgViewerDiv = Dom_html.document##createElement(Js.string "div") in
-          imgViewerDiv##id <- Js.string imgViewerId;
+          (* Image Viewer Creation *)
           let imgViewer = Dom_html.createImg Dom_html.document in
           imgViewer##alt <- Js.string "";
           imgViewer##src <- firstThumbLink##href;
+          let imgViewerDiv = Dom_html.document##createElement(Js.string "div") in
+          imgViewerDiv##id <- Js.string imgViewerId;
+          
+          
       }}
 
 (***********************)
