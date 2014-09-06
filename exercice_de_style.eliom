@@ -210,77 +210,161 @@ let gallery_page =
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/01_IMG_7682.JPG"]) ()
+                    ["img/gallery/thumbs/01_IMG_7682.JPG"]) ();
+          div ~a:[a_style "width: 250px; margin-right: 30px; display:none;"] [
+
+          ]
         ] ["img/gallery/01_IMG_7682.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/02_IMG_9192_v2.JPG"]) ()
+                    ["img/gallery/thumbs/02_IMG_9192_v2.JPG"]) ();
+          div ~a:[a_style " display:none;"] [
+            h3 [pcdata "Irving Penn (1917-2009) : Christmas at Cuzco, \"Fruit vendor from the valley\" (1948)"];
+            p [pcdata "Tirage argentique de 1949"; br ();
+               pcdata "Au dos: Etiquette manuscrite de parution: crédit, titre, parution:«page 88 December 1949 Vogue», cachet humide copyright"; br (); 
+               pcdata "Dimension : 19,6 x 19,4 cm (image) - 25,4 x 20,6 cm (feuille)"]
+          ]
         ] ["img/gallery/02_IMG_9192_v2.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/03_IMG_7935.JPG"]) ()
+                    ["img/gallery/thumbs/03_IMG_7935.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            h3 [pcdata "Adree  Bloc (1896-1966) : Sans Titre (1956)"];
+            p [pcdata "Sérigraphie couleurs"; br ();
+               pcdata "Signée en bas a droite"; br ();
+               pcdata "Dimensions :  21 x 32 cm"; br ()]
+          ]
         ] ["img/gallery/03_IMG_7935.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/04_IMG_8328.JPG"]) ()
+                    ["img/gallery/thumbs/04_IMG_8328.JPG"]) ();
+          div ~a:[a_style "width: 250px; margin-right: 30px; display:none;"] [
+            
+          ]
         ] ["img/gallery/04_IMG_8328.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/05_B23K0051-2.JPG"]) ()
+                    ["img/gallery/thumbs/05_B23K0051-2.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            h3 [pcdata "Fernand LÉGER (1881-1955) : La lecture (1924)"];
+            p [pcdata "Lithographie en couleurs"; br ();
+               pcdata "Signée par l’artiste a la mine de plomb et numerotee 299/350"; br ();
+               pcdata "Éditée par la Galerie Louis Carré, Paris 1953. Imprimée par Mourlot, tirage à 350 exemplaires."; br ();
+               pcdata "Dimensions 55 x 70 cm"; br ()];
+            h3 [pcdata "Gunnar Nylund (1904-1997) : Vases biomorphiques la  série Caolina"];
+            p [pcdata "Grès noir,"; br ();
+               pcdata "Signés GN avec la triple couronne de la manufacture Rörstrand, Suede"];
+            h3 [pcdata "Jacques Adnet (1900-1984) :"];
+            p [pcdata "Petit meuble à musique en placage de sycomore à corps quadrangulaire souligné de filets en bronze doré ouvrant en façade par deux portes et surmonté d'une trappe montée sur des charnières. Il repose sur quatre pieds cubiques."; br ();
+               pcdata "Vers 1940"; br ();
+               pcdata "Dimensions 90,5 x 96,5 x 47,5 cm"];
+            h3 [pcdata "Rome IIe siècle  : Tete masculine barbue provenant d’un sarcophage"];
+            p [pcdata "Marbre"; br ();
+               pcdata "Dimensions : H 9 cm"]
+          ]
         ] ["img/gallery/05_B23K0051-2.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/06_IMG_7595.JPG"]) ()
+                    ["img/gallery/thumbs/06_IMG_7595.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            p [pcdata "Importante lampe à poser en laiton et socle en bois. Vers 1960."; br ();
+               pcdata "Editeur américain Laurel."];
+            h3 [pcdata "CARL HARRY STAHLANE (NÉ EN 1920) : Vase en gres"];
+            p [pcdata "Signé"; br ();
+               pcdata "Manufacture Rörstrand"; br ();
+               pcdata "Dimensions : 27 cm"];
+            h3 [pcdata "Wilhelm KAGE (1889-1960) : Coupe de la série \"Argenta\", vers 1940"];
+            p [pcdata "Grès , manufacture Gustavsberg"; br ();
+               pcdata "Diamètre 18 cm"]
+          ]
         ] ["img/gallery/06_IMG_7595.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/07_IMG_7737.JPG"]) ()
+                    ["img/gallery/thumbs/07_IMG_7737.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            h3 [pcdata "Charles Lapicque (1898-1988) : Littoral breton (1952)"];
+            p [pcdata "Pinceau et encre de chine sur papier"; br ();
+               pcdata "Signé en bas a droite et date 52"; br ();
+               pcdata "Dimensions : 45 x 56 cm"];
+            h3 [pcdata "Gunnar Nylund (1904-1997) : Une petite coupe en grès noir"];
+            p [pcdata "Grès noir"; br ();
+               pcdata "Signe GN avec la triple couronne de la manufacture Rorstrand, Suede"; br ();
+               pcdata "Dimensions : 8 x 16 x 12 cm"];
+            h3 [pcdata "Jean & Robert Cloutier :  Vase \"Le Taureau\" (1960)"];
+            p [pcdata "Céramique noire vernie, intérieure rouge"; br ();
+               pcdata "Signé « Cloutier RJ » au revers"; br ();
+               pcdata "Dimensions : 13 x 20 cm"];
+          ]
         ] ["img/gallery/07_IMG_7737.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/08_IMG_7760.JPG"]) ()
+                    ["img/gallery/thumbs/08_IMG_7760.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            
+          ]
         ] ["img/gallery/08_IMG_7760.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/09_IMG_7852.JPG"]) ()
+                    ["img/gallery/thumbs/09_IMG_7852.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            
+          ]
         ] ["img/gallery/09_IMG_7852.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/10_IMG_7889.JPG"]) ()
+                    ["img/gallery/thumbs/10_IMG_7889.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            
+          ]
         ] ["img/gallery/10_IMG_7889.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/11_IMG_8331.JPG"]) ()
+                    ["img/gallery/thumbs/11_IMG_8331.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            
+          ]
         ] ["img/gallery/11_IMG_8331.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/12_IMG_8505 1.JPG"]) ()
+                    ["img/gallery/thumbs/12_IMG_8505 1.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            
+          ]
         ] ["img/gallery/12_IMG_8505 1.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/13_IMG_8545.JPG"]) ()
+                    ["img/gallery/thumbs/13_IMG_8545.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            
+          ]
         ] ["img/gallery/13_IMG_8545.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/14_IMG_9095.JPG"]) ()
+                    ["img/gallery/thumbs/14_IMG_9095.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            
+          ]
         ] ["img/gallery/14_IMG_9095.JPG"];
         a (Eliom_service.static_dir ()) [
           img ~alt:("1") 
             ~src:(make_uri ~service:(Eliom_service.static_dir ()) 
-                    ["img/gallery/thumbs/15_IMG_9126.JPG"]) ()
+                    ["img/gallery/thumbs/15_IMG_9126.JPG"]) ();
+          div ~a:[a_style "display:none;"] [
+            
+          ]
         ] ["img/gallery/15_IMG_9126.JPG"];
       ]
     ]

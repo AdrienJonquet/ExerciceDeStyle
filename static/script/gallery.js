@@ -5,7 +5,7 @@ function generate_gallery () {
 	imgViewerId: "viewer",
 	activeClass: "active",
 	activeTitle: "Photo en cours de visualisation",
-    loaderTitle: "Chargement en cours",
+	loaderTitle: "Chargement en cours",
 	loaderImage: "img/loader.gif"
     };
     
@@ -20,36 +20,44 @@ function generate_gallery () {
 	title: settings.loaderTitle,
 	src: settings.loaderImage
     });
-    
+
     highlight(firstThumbLink);
     
+    var message = firstThumbLink.children("div").clone();
+    message.css({"display": ""});
+
     $("#"+settings.thumbListId).after(
 	$(document.createElement("div"))
-	    .attr("id",settings.imgViewerId)
+	    .attr("id", settings.imgViewerId)
 	    .append(
 		$(document.createElement("img")).attr({
 		    alt: "",
 		    src: firstThumbLink.attr("href")
-		})
-	    )
-  );
+		}))
+	    .append(
+		$(document.createElement("div"))
+		    .attr("style", "float:right; margin-left:30px")
+		    .html(message)));
     
-  var imgViewer = $("#"+settings.imgViewerId),
-    bigPic = imgViewer.children("img");
+    var imgViewer = $("#"+settings.imgViewerId);
+    var bigPic = imgViewer.children("img");
+    var textPic = imgViewer.children("div");
     
     thumbLinks
 	.click(function(e){
 	    e.preventDefault();
 	    var $this = $(this),
-            target = $this.attr("href");
-	    if (bigPic.attr("src") == target) return;
+	    target = $this.attr("href");
+	    var text = $this.children("div").clone();
+	    text.css({"display": ""});
+	    if (bigPic.attr("src") == target) 
+	    	return;
 	    highlight($this);
 	    imgViewer.html(loader);
-	    bigPic
-		.load(function(){
-		    imgViewer.html($(this).fadeIn(250));
-		})
-		.attr("src",target);
+	    bigPic.load(function(){
+	    	imgViewer.html($(this).fadeIn(250)).append(textPic.html(text));
+	    }).attr("src", target);
+	    textPic.html(text);
 	});
 }
 
